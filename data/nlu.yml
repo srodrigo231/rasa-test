@@ -1,0 +1,95 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hola
+    - buenos dias
+    - buenas tardes
+    - buenas noches
+    - buendia
+    - buenatarde
+    - buenanoche
+    - ey!
+
+- intent: goodbye
+  examples: |
+    - nos vemos
+    - chau
+    - chau chau
+    - adios
+    - hasta luego
+    - hasta pronto
+    - ten un buen dia
+
+- intent: affirm
+  examples: |
+    - si
+    - esta bien
+    - afirmativo
+    - correcto
+    - claro que si
+
+- intent: deny
+  examples: |
+    - no
+    - negativo
+    - para nada
+    - de ninguna manera
+
+- intent: thankyou
+  examples: |
+    - okay muchas gracias
+    - gracias
+    - seguro gracias
+    - gracias, chau
+
+- intent: bot_challenge
+  examples: |
+    - eres un bot
+    - eres un humano
+    - estoy hablando con un bot?
+    - estoy hablando con un humano?
+
+- intent: stop
+  examples: |
+    - para
+    - no importa
+    - por favor para
+    - quiero parar
+    - para el pedido
+
+- intent: give_time
+  examples : |
+    - puedes decirme que hora es?
+    - dime la hora
+    - que hora es
+    - que hora sera
+
+- intent: buy_pizza
+  examples: |
+    - quiero comprar una pizza
+    - quiero pizza
+    - puedo comprar una pizza
+    - estoy interesado en un pan circular de origen Italiano
+
+- intent: inform
+  examples: |
+    - me gustaria una pizza [grande](pizza_size)
+    - quier ordenar una pizza [xl](pizza_size) [hawaiana](pizza_type)
+    - [mediana](pizza_size) pizza
+    - [xl](pizza_size)
+    - [pequeña](pizza_size)
+    - [p](pizza_size)
+    - [pepperoni](pizza_type)
+    - dame una pizza de [mozerella](pizza_type)
+    - pizza [hawaii](pizza_type)
+    - [peque](pizza_size)
+    - [hawaii](pizza_type)
+    - quiero una pizza [grande](pizza_size)
+    - [muzzarella](pizza_type)
+    - [hawai](pizza_type)
+    - [vegetariana](pizza_type)
+    - quiero una pizza [grande](pizza_size) 
+    - [vegetariana](pizza_type)
+    - [vegana](pizza_type)

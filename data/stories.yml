@@ -1,0 +1,137 @@
+version: "3.1"
+
+stories:
+
+- story: path about time
+  steps:
+  - intent: give_time
+  - action: action_show_time
+  - action: utter_goodbye
+
+- story: greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+# - story: deny
+#   steps:
+#   - utter_goodbye
+
+# - story: affirm
+#   steps:
+#     - health_form
+#     - form{"name": "health_form"}
+#     - form{"name": null}
+#     - utter_slots_values
+
+- story: thankyou
+  steps:
+  - intent: thankyou
+  - action: utter_no_worries
+  - action: utter_goodbye
+
+# - story: survey happy path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: affirm
+  # - action: health_form
+  # - active_loop: health_form
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_pizza
+  - action: simple_pizza_form
+  - active_loop: simple_pizza_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - slot_was_set:
+    - pizza_size: large
+  - slot_was_set:
+    - pizza_size: large
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - slot_was_set:
+    - pizza_type: hawaiii
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - slot_was_set:
+    - pizza_type: hawai
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - slot_was_set:
+    - pizza_type: hawaii
+  - slot_was_set:
+    - pizza_type: hawaii
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_pizza_slots
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User interrupts the form and doesn't want to continue
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_pizza
+  - action: simple_pizza_form
+  - active_loop: simple_pizza_form
+  - intent: stop
+  - action: utter_ask_continue
+  - or: 
+    - intent: stop
+    - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_pizza
+  - action: simple_pizza_form
+  - active_loop: simple_pizza_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: stop
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_pizza
+  - action: simple_pizza_form
+  - active_loop: simple_pizza_form
+  - slot_was_set:
+    - requested_slot: pizza_size
+  - slot_was_set:
+    - pizza_size: s
+  - slot_was_set:
+    - pizza_size: s
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: goodbye
+  - action: utter_goodbye

@@ -1,0 +1,71 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - thankyou
+  - bot_challenge
+  - give_time
+  - inform
+  - outofscope
+  - buy_pizza
+  - request_pizza_form
+  - stop
+
+entities:
+  - pizza_size
+  - pizza_type
+
+slots:
+  pizza_size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_size
+  pizza_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_type
+
+responses:
+  utter_greet:
+  - text: "Hola!, como estas?"
+  utter_no_worries:
+  - text: "Sin problemas :)"
+  utter_goodbye:
+  - text: "Chau"
+  utter_iamabot:
+  - text: "Soy un Bot!."
+  utter_submit:
+  - text: Ahora ordena la pizza para ti!
+  utter_pizza_slots:
+  - text: Voy a preparar una pizza {pizza_type} {pizza_size}.
+  utter_ask_continue:
+  - text: Estas seguro de parar tu pedido?
+  utter_ask_pizza_size:
+  - text: Que tamaño de pizza quieres?
+  utter_ask_pizza_type:
+  - text: Que tipo de pizza quieres pedir?
+
+actions:
+- utter_goodbye
+- utter_greet
+- utter_pizza_slots
+- utter_submit
+- validate_simple_pizza_form
+- action_show_time
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+forms:
+  simple_pizza_form:
+    required_slots:
+      - pizza_size
+      - pizza_type

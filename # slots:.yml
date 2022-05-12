@@ -1,0 +1,247 @@
+# slots:
+#   confirm_exercise:
+#     type: any
+#   exercise:
+#     type: any
+#   sleep:
+#     type: any
+#   diet:
+#     type: any
+#   stress:
+#     type: any
+#   goal:
+#     type: any
+
+# slots:
+#   confirm_exercise:
+#     type: unfeaturized
+#     influence_conversation: false
+#     mappings:
+#     - type: custom
+#   exercise:
+#     type: unfeaturized
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: exercise
+#   sleep:
+#     type: unfeaturized
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: sleep
+#   diet:
+#     type: unfeaturized
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#   stress:
+#     type: unfeaturized
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: stress
+#   goal:
+#     type: unfeaturized
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+# slots:
+#   first_name:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: first_name
+#   last_name:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: last_name
+#   email:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: email    
+
+responses:
+  utter_greet:
+  - text: "Hola!, como estas?"
+  utter_ask_confirm_exercise:
+  - text: "Ayer hiciste ejercicio?, No te preoccupes si no corriste una maraton, las caminatas cuentan."
+  utter_ask_exercise:
+  - text: "Que tipo de ejercicio hiciste 💪 ?"
+  utter_ask_sleep:
+  - text: "¿Cuanto dormiste 💤 anoche?"
+  utter_ask_diet:
+  - text: "¿Seguiste una dieta saludable 🥦 ayer?"
+  utter_ask_stress:
+  - text: "¿Cuál es tu nivel de estrés en este momento 🧘?"
+    buttons:
+      - title: "bajo"
+        payload: '/inform{"stress": "low"}'
+      - title: "medio"
+        payload: '/inform{"stress": "medium"}'
+      - title: "alto"
+        payload: '/inform{"stress": "high"}'
+  utter_ask_goal:
+  - text: "Establecer metas, incluso las más pequeñas, es una excelente manera de enfocar su día. ¿Qué quieres lograr hoy 🥇?"
+  utter_slots_values:
+  - text: "Has enviado las siguientes respuestas:\n
+            - Ejercicio?: {confirm_exercise}\n
+            - Tipo de ejercicio: {exercise}\n
+            - Sueño: {sleep}\n
+            - ¿Apegado a una dieta saludable?: {diet}\n
+            - Nivel de estress: {stress}\n
+            - Objetivos: {goal}"
+  utter_no_worries:
+  - text: "Sin problemas :)"
+  utter_ask_continue:
+  - text: "Lo siento, no entiendo muy bien. ¿Quieres continuar?"
+  utter_goodbye:
+  - text: "Chau"
+  utter_iamabot:
+  - text: "Soy un Bot!."
+
+# forms:
+#   health_form:
+#     confirm_exercise:
+#       - type: from_intent
+#         intent: affirm
+#         value: True
+#       - type: from_intent
+#         intent: deny
+#         value: False
+#       - type: from_intent
+#         intent: inform
+#         value: True
+#     exercise:
+#       - type: from_entity
+#         entity: exercise
+#     sleep:
+#       - type: from_entity
+#         entity: sleep
+#       - type: from_intent
+#         intent: deny
+#         value: None
+#     stress:
+#       - type: from_entity
+#         entity: stress
+#     diet:
+#       - type: from_text
+#         intent: 
+#           - inform 
+#           - affirm 
+#           - deny
+#     goal:
+#       - type: from_text
+#         intent: inform
+
+# - intent: give_user_data
+#   examples : |
+#     - quiero registrar mis datos
+#     - registrar datos
+#     - ingresar mi informacion
+#     - ingresar mi nombre y mi correo
+
+# - intent: inform
+#   examples : |
+#   - [8 horas](sleep) completas
+#   - solo [cuatro horas](sleep)
+#   - alrededor de [seis hours](sleep)
+#   - [bajo](stress)
+#   - [medio](stress)
+#   - estress [alto](stress) ahora mismo
+#   - Si, fui a [correr](exercise)
+#   - una hora de [yoga](exercise)
+#   - si, fui a una [caminata](exercise)
+#   - si, lleve al perro a [caminar](exercise)
+#   - si, jugue [tennis](exercise)
+#   - fui a [nadar](exercise)
+#   - tome una [clase de baile](exercise)  
+#   - hice algo de [boxeo](exercise)
+#   - [escalar montañas](exercise)
+#   - jugue algo de [basketball](exercise) 
+#   - jugue [futbol](exercise)
+#   - Quiero levantarme temprano e ir a correr
+#   - ser mas paciente con mi familia
+#   - tratar de ser mejor amigo
+#   - comer mejor mañana
+#   - comer menos comida chatarra
+#   - comer mejor
+#   - pasar menos tiempo en mi telefono
+#   - no procastinar
+#   - ir a la cama temprano
+#   - no estar despierto hasta tarde
+#   - tratar de hacer algo de meditacion
+#   - comi bastante saludable en general
+#   - muchas frutas y vegetales
+#   - comi ensalada
+#   - muchas meriendas
+#   - muchos dulces
+#   - mucha comida chatarra
+#   - muchos carbohidratos
+#   - mucha comida grasosa
+#   - hacer mas ejercicio
+
+# - intent: inform
+#   examples : |
+#     - soy [name](user_fist_name) [lastname](user_last_name)
+#     - mi nombre es [name](user_fist_name)
+#     - mi apellido es [lastname](user_last_name)
+#     - este es mi correo [email](user_email)
+
+# intent:out_of_scope
+#   examples : |
+#   - esto no es lo que quiero
+#   - espera para
+#   - no me ayudas en nada
+#   - esto no ayuda en lo absoluto
+#   - que edad tienes
+#   - quiero ordenar una pizza
+#   - dime el clima
+#   - esto no funcion a
+#   - ya te lo dije
+#   - esto no me gusta
+#   - no quiero decirte eso
+#   - ninguno de tus negocios
+#   - no es correcto
+#   - para de hablar
+#   - ni importa
+#   - quiero hace algo mas
+#   - cambie de parecer
+
+# - rule: Activate User Form
+#   steps:
+#   - intent: give_user_data
+#   - action: userdata_form
+#   - active_loop: userdata_form
+
+# - rule: Submit User Data Form
+#   condition:
+#   - active_loop: userdata_form
+#   steps:
+#   - action: userdata_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_submit
+#   - action: utter_slots_values
+
+# - rule: Submit form
+#   condition:
+#   # Condition that form is active.
+#   - active_loop: health_form
+#   steps:
+#   - action: health_form
+#   - active_loop: null
+#   # The action we want to run when the form is submitted.
+#   - action: action_submit_results
+#   - action: utter_slots_values
+
+# - rule: Ask exercise question
+#     steps:
+#     - intent: ask_exercise
+#     - action: utter_exercise_info
